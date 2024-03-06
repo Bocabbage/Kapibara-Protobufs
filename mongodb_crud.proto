@@ -1,5 +1,8 @@
 syntax = "proto3";
 
+package mikanani_grpc_utils;
+option go_package = "./internal/grpc_utils";
+
 service MikananiMongoCrud {
     rpc QueryAnime(QueryAnimeRequest) returns (QueryAnimeResponse) {}
     rpc UpdateAnime(UpdateAnimeRequest) returns (UpdateAnimeResponse) {}
