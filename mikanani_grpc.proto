@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+package mikanani_grpc_utils;
+option go_package = "./internal/mikanani_grpc_utils";
+
+service MikananiService {
+    rpc ListAnimeMeta(ListAnimeMetaRequest) returns (ListAnimeMetaResponse) {}
+    rpc GetAnimeDoc(GetAnimeDocRequest) returns (GetAnimeDocResponse) {}
+    rpc UpdateAnimeDoc(UpdateAnimeDocRequest) returns (google.protobuf.Empty) {}
+    rpc UpdateAnimeMeta(UpdateAnimeMetaRequest) returns (google.protobuf.Empty) {}
+    rpc InsertAnimeItem(InsertAnimeItemRequest) returns (google.protobuf.Empty) {}
+    rpc DeleteAnimeItem(DeleteAnimeItemRequest) returns (google.protobuf.Empty) {}
+    rpc DispatchDownloadTask(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+}
+
+message AnimeMeta {
+    int64 uid = 1;
+    string name = 2;
+    int64 downloadBitmap = 3;
+    bool isActive = 4;
+    repeated tags = 5;
+}
+
+message AnimeDoc {
+    int64 uid = 1;
+    int64 rssUrl = 2;
+    int64 rule = 3;
+    int64 regex = 4;
+}
+
+// ----- ListAnimeMeta
+message ListAnimeMetaRequest {
+    int64 startIndex = 1;       // if startIndex == endIndex == -1, return all 
+    int64 endIndex = 2;
+    int32 statusFilter = 3; // 0: all, 1: only-active, 2: only-inactive
+}
+
+message ListAnimeMetaResponse {
+    int64 itemCount = 1;
+    repeated AnimeMeta animeMetas = 2;
+}
+
+// ---- GetAnimeDoc
+message GetAnimeDocRequest {
+    int64 uid = 1;
+}
+
+message GetAnimeDocResponse {
+    AnimeDoc animeDoc = 1;
+}
+
+// ---- UpdateAnimeDoc
+message UpdateAnimeDocRequest {
+    AnimeDoc updateAnimeDoc = 1;
+}
+
+// ---- UpdateAnimeMeta
+message UpdateAnimeMetaRequest {
+    AnimeMeta updateAnimeMeta = 1;
+}
+
+// ---- InsertAnimeItem
+message InsertAnimeItemRequest {
+    AnimeMeta insertAnimeMeta = 1;
+    AnimeDoc insertAnimeDoc = 2;
+}
+
+// ---- DeleteAnimeItem
+message DeleteAnimeItemRequest {
+    int64 uid = 1;
+}
