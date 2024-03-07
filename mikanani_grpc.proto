@@ -20,14 +20,14 @@ message AnimeMeta {
     string name = 2;
     int64 downloadBitmap = 3;
     bool isActive = 4;
-    repeated tags = 5;
+    repeated string tags = 5;
 }
 
 message AnimeDoc {
     int64 uid = 1;
-    int64 rssUrl = 2;
-    int64 rule = 3;
-    int64 regex = 4;
+    string rssUrl = 2;
+    string rule = 3;
+    string regex = 4;
 }
 
 // ----- ListAnimeMeta
