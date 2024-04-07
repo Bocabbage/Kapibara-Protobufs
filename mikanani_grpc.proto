@@ -10,7 +10,7 @@ service MikananiService {
     rpc GetAnimeDoc(GetAnimeDocRequest) returns (GetAnimeDocResponse) {}
     rpc UpdateAnimeDoc(UpdateAnimeDocRequest) returns (google.protobuf.Empty) {}
     rpc UpdateAnimeMeta(UpdateAnimeMetaRequest) returns (google.protobuf.Empty) {}
-    rpc InsertAnimeItem(InsertAnimeItemRequest) returns (google.protobuf.Empty) {}
+    rpc InsertAnimeItem(InsertAnimeItemRequest) returns (InsertAnimeItemResponse) {}
     rpc DeleteAnimeItem(DeleteAnimeItemRequest) returns (google.protobuf.Empty) {}
     rpc DispatchDownloadTask(google.protobuf.Empty) returns (google.protobuf.Empty) {}
 }
@@ -65,6 +65,10 @@ message UpdateAnimeMetaRequest {
 message InsertAnimeItemRequest {
     AnimeMeta insertAnimeMeta = 1;
     AnimeDoc insertAnimeDoc = 2;
+}
+
+message InsertAnimeItemResponse {
+    int64 uid = 1;
 }
 
 // ---- DeleteAnimeItem
