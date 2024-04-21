@@ -13,6 +13,7 @@ service MikananiService {
     rpc InsertAnimeItem(InsertAnimeItemRequest) returns (InsertAnimeItemResponse) {}
     rpc DeleteAnimeItem(DeleteAnimeItemRequest) returns (google.protobuf.Empty) {}
     rpc DispatchDownloadTask(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+    rpc GetAnimeCount(google.protobuf.Empty) returns (GetAnimeCountResponse) {}
 }
 
 message AnimeMeta {
@@ -74,4 +75,9 @@ message InsertAnimeItemResponse {
 // ---- DeleteAnimeItem
 message DeleteAnimeItemRequest {
     int64 uid = 1;
+}
+
+// ---- GetAnimeCount
+message GetAnimeCountResponse {
+    int64 count = 1;
 }
