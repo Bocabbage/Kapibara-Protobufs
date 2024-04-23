@@ -9,7 +9,7 @@ option go_package = "./internal/mikanani_grpc_utils";
 service MikananiService {
     rpc ListAnimeMeta(ListAnimeMetaRequest) returns (ListAnimeMetaResponse) {
         option (google.api.http) = {
-            get: "/anime/list-meta/"
+            get: "/anime/list-meta"
         };
     }
     rpc GetAnimeDoc(GetAnimeDocRequest) returns (GetAnimeDocResponse) {
