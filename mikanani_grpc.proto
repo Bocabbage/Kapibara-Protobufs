@@ -1,19 +1,55 @@
 syntax = "proto3";
 
 import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
 
 package mikanani_grpc_utils;
 option go_package = "./internal/mikanani_grpc_utils";
 
 service MikananiService {
-    rpc ListAnimeMeta(ListAnimeMetaRequest) returns (ListAnimeMetaResponse) {}
-    rpc GetAnimeDoc(GetAnimeDocRequest) returns (GetAnimeDocResponse) {}
-    rpc UpdateAnimeDoc(UpdateAnimeDocRequest) returns (google.protobuf.Empty) {}
-    rpc UpdateAnimeMeta(UpdateAnimeMetaRequest) returns (google.protobuf.Empty) {}
-    rpc InsertAnimeItem(InsertAnimeItemRequest) returns (InsertAnimeItemResponse) {}
-    rpc DeleteAnimeItem(DeleteAnimeItemRequest) returns (google.protobuf.Empty) {}
-    rpc DispatchDownloadTask(google.protobuf.Empty) returns (google.protobuf.Empty) {}
-    rpc GetAnimeCount(google.protobuf.Empty) returns (GetAnimeCountResponse) {}
+    rpc ListAnimeMeta(ListAnimeMetaRequest) returns (ListAnimeMetaResponse) {
+        option (google.api.http) = {
+            get: "/anime/list-meta/"
+        };
+    }
+    rpc GetAnimeDoc(GetAnimeDocRequest) returns (GetAnimeDocResponse) {
+        option (google.api.http) = {
+            get: "/anime/doc/{uid}" // Has API change
+        };
+    }
+    rpc UpdateAnimeDoc(UpdateAnimeDocRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            put: "/anime/update-doc"
+            body: "*"
+        };
+    }
+    rpc UpdateAnimeMeta(UpdateAnimeMetaRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            put: "/anime/update-meta"
+            body: "*"
+        };
+    }
+    rpc InsertAnimeItem(InsertAnimeItemRequest) returns (InsertAnimeItemResponse) {
+        option (google.api.http) = {
+            put: "/anime/insert"
+            body: "*"
+        };
+    }
+    rpc DeleteAnimeItem(DeleteAnimeItemRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/anime/delete/uid" // Has API change
+        };
+    }
+    rpc DispatchDownloadTask(google.protobuf.Empty) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            post: "/anime/dispatch-download"
+        };
+    }
+    rpc GetAnimeCount(google.protobuf.Empty) returns (GetAnimeCountResponse) {
+        option (google.api.http) = {
+            get: "/anime/anime-count"
+        };
+    }
 }
 
 message AnimeMeta {
