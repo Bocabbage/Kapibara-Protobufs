@@ -37,7 +37,7 @@ service MikananiService {
     }
     rpc DeleteAnimeItem(DeleteAnimeItemRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            delete: "/delete/uid" // Has API change
+            delete: "/delete/{uid}" // Has API change
         };
     }
     rpc DispatchDownloadTask(google.protobuf.Empty) returns (google.protobuf.Empty) {
