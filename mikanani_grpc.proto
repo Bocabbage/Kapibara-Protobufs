@@ -9,45 +9,45 @@ option go_package = "./internal/mikanani";
 service MikananiService {
     rpc ListAnimeMeta(ListAnimeMetaRequest) returns (ListAnimeMetaResponse) {
         option (google.api.http) = {
-            get: "/api/v1/mikanani/v2/anime/list-meta"
+            get: "/mikanani/v2/anime/list-meta"
         };
     }
     rpc GetAnimeDoc(GetAnimeDocRequest) returns (GetAnimeDocResponse) {
         option (google.api.http) = {
-            get: "/api/v1/mikanani/v2/anime/doc/{uid}" // Has API change
+            get: "/mikanani/v2/anime/doc/{uid}" // Has API change
         };
     }
     rpc UpdateAnimeDoc(UpdateAnimeDocRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            put: "/api/v1/mikanani/v2/anime/update-doc"
+            put: "/mikanani/v2/anime/update-doc"
             body: "*"
         };
     }
     rpc UpdateAnimeMeta(UpdateAnimeMetaRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            put: "/api/v1/mikanani/v2/anime/update-meta"
+            put: "/mikanani/v2/anime/update-meta"
             body: "*"
         };
     }
     rpc InsertAnimeItem(InsertAnimeItemRequest) returns (InsertAnimeItemResponse) {
         option (google.api.http) = {
-            post: "/api/v1/mikanani/v2/anime/insert"
+            post: "/mikanani/v2/anime/insert"
             body: "*"
         };
     }
     rpc DeleteAnimeItem(DeleteAnimeItemRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            delete: "/api/v1/mikanani/v2/anime/delete/{uid}" // Has API change
+            delete: "/mikanani/v2/anime/delete/{uid}" // Has API change
         };
     }
     rpc DispatchDownloadTask(google.protobuf.Empty) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            post: "/api/v1/mikanani/v2/anime/dispatch-download"
+            post: "/mikanani/v2/anime/dispatch-download"
         };
     }
     rpc GetAnimeCount(google.protobuf.Empty) returns (GetAnimeCountResponse) {
         option (google.api.http) = {
-            get: "/api/v1/mikanani/v2/anime/anime-count"
+            get: "/mikanani/v2/anime/anime-count"
         };
     }
 }
