@@ -14,7 +14,7 @@ service MikananiService {
     }
     rpc GetAnimeDoc(GetAnimeDocRequest) returns (GetAnimeDocResponse) {
         option (google.api.http) = {
-            get: "/mikanani/v2/anime/doc/{uid}" // Has API change
+            get: "/mikanani/v2/anime/doc/{uid}"
         };
     }
     rpc UpdateAnimeDoc(UpdateAnimeDocRequest) returns (google.protobuf.Empty) {
@@ -37,17 +37,28 @@ service MikananiService {
     }
     rpc DeleteAnimeItem(DeleteAnimeItemRequest) returns (google.protobuf.Empty) {
         option (google.api.http) = {
-            delete: "/mikanani/v2/anime/delete/{uid}" // Has API change
+            delete: "/mikanani/v2/anime/delete/{uid}"
         };
     }
     rpc DispatchDownloadTask(google.protobuf.Empty) returns (google.protobuf.Empty) {
         option (google.api.http) = {
             post: "/mikanani/v2/anime/dispatch-download"
+            body: "*"
         };
     }
     rpc GetAnimeCount(google.protobuf.Empty) returns (GetAnimeCountResponse) {
         option (google.api.http) = {
             get: "/mikanani/v2/anime/anime-count"
+        };
+    }
+    rpc GetRecentUpdateList(google.protobuf.Empty) returns (GetRecentUpdateListResponse) {
+        option (google.api.http) = {
+            get: "/mikanani/v2/anime/recent-updates"
+        };
+    }
+    rpc DeleteRecentUpdateById(DelRecentUpdateByIdRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/mikanani/v2/anime/recent/{uid}"
         };
     }
 }
@@ -57,7 +68,8 @@ message AnimeMeta {
     string name = 2;
     int64 downloadBitmap = 3;
     int32 isActive = 4;
-    repeated string tags = 5;
+    int32 episodes = 5;
+    repeated string tags = 6;
 }
 
 message AnimeDoc {
@@ -116,4 +128,14 @@ message DeleteAnimeItemRequest {
 // ---- GetAnimeCount
 message GetAnimeCountResponse {
     int64 count = 1;
+}
+
+// ---- GetRecentUpdateList
+message GetRecentUpdateListResponse {
+    repeated int64 uids = 1;
+}
+
+// ---- DeleteRecentUpdateById
+message DelRecentUpdateByIdRequest {
+    int64 uid = 1;
 }
